@@ -1,4 +1,4 @@
-package com.sportyshoe.site.admin;
+package com.sportyshoe.common.entity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
