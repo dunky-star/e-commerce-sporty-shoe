@@ -12,6 +12,7 @@
 	<modules>
 		<module>SportyshoeCommon</module>
 		<module>SportyshoeWebParent</module>
+		<module>SportyshoeWebParent/Backend</module>
 	</modules>
 
 </project>
