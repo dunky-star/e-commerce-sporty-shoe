@@ -20,7 +20,8 @@
     </properties>
 
     <modules>
-        <module>Backend</module>
+        <module>BackEnd</module>
+        <module>FrontEnd</module>
     </modules>
 
     <dependencies>

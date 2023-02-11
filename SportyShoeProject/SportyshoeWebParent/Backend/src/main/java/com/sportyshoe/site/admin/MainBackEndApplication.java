@@ -1,4 +1,4 @@
-package com.sportyshoe.admin;
+package com.sportyshoe.site.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

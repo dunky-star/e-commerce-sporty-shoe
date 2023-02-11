@@ -8,9 +8,9 @@
         <artifactId>SportyshoeWebParent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>BackEnd</artifactId>
-    <name>BackEnd</name>
-    <description>Sporty shoe Admin project</description>
+    <artifactId>FrontEnd</artifactId>
+    <name>FrontEnd</name>
+    <description>Sporty shoe web application</description>
     <properties>
         <java.version>17</java.version>
     </properties>
