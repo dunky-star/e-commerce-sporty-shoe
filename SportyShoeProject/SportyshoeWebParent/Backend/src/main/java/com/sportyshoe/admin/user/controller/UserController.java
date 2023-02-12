@@ -1,9 +1,13 @@
 package com.sportyshoe.admin.user.controller;
 
 import com.sportyshoe.admin.user.UserService;
+import com.sportyshoe.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -12,7 +16,9 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/users")
-    public String listAll(){
-        return "users";
+    public String listAll(Model model){
+        List<User> listUsers = service.listAll();
+        model.addAttribute("listUsers", listUsers);
+        return "users/users";
     }
 }
