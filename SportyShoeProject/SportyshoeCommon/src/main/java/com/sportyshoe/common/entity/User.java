@@ -119,6 +119,14 @@ public class User {
         return firstName + " " + lastName;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public boolean hasRole(String roleName) {
         Iterator<Role> iterator = roles.iterator();
 
@@ -131,5 +139,7 @@ public class User {
 
         return false;
     }
+
+
 }
 
