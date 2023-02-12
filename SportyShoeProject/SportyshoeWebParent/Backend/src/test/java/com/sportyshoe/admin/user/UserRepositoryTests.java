@@ -73,6 +73,17 @@ public class UserRepositoryTests {
 
         repo.save(userDuncanKaligs);
     }
+    @Test
+    public void testUpdateUserRoles() {
+        User userSheena = repo.findById(2).get();
+        Role roleEditor = new Role(4);
+        Role roleSalesperson = new Role(3);
+
+        userSheena.getRoles().remove(roleEditor);
+        userSheena.addRole(roleSalesperson);
+
+        repo.save(userSheena);
+    }
 
     @Test
     public void testDeleteUser() {
