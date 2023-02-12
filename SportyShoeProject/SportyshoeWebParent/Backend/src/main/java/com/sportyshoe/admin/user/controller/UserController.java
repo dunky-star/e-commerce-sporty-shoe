@@ -1,6 +1,7 @@
 package com.sportyshoe.admin.user.controller;
 
 import com.sportyshoe.admin.user.UserService;
+import com.sportyshoe.common.entity.Role;
 import com.sportyshoe.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,16 +26,20 @@ public class UserController {
 
     @GetMapping("/users/new")
     public String newUser(Model model) {
+        List<Role> listRoles = service.listRoles();
+
         User user = new User();
         user.setEnabled(true);
-
+        model.addAttribute("listRoles", listRoles);
         model.addAttribute("user", user);
+        model.addAttribute("pageTitle", "Create New User");
         return "users/user_form";
     }
 
     @PostMapping("/users/save")
     public String saveUser(User user){
         System.out.println(user);
+        service.save(user);
         return "redirect/users/users";
     }
 
