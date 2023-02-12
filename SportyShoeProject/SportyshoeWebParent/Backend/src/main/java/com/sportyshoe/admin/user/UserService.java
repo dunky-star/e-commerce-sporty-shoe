@@ -3,6 +3,7 @@ package com.sportyshoe.admin.user;
 import com.sportyshoe.common.entity.Role;
 import com.sportyshoe.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,9 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<User> listAll(){
         return (List<User>) userRepo.findAll();
     }
@@ -27,7 +31,27 @@ public class UserService {
         return (List<Role>) roleRepo.findAll();
     }
 
-    public void save(User user) {
-        userRepo.save(user);
+    public User save(User user) {
+        boolean isUpdatingUser = (user.getId() != null);
+
+        if (isUpdatingUser) {
+            User existingUser = userRepo.findById(user.getId()).get();
+
+            if (user.getPassword().isEmpty()) {
+                user.setPassword(existingUser.getPassword());
+            } else {
+                encodePassword(user);
+            }
+
+        } else {
+            encodePassword(user);
+        }
+
+        return userRepo.save(user);
+    }
+
+    private void encodePassword(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
     }
 }
