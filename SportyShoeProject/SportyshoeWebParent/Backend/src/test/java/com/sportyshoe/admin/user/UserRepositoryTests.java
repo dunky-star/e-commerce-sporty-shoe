@@ -46,18 +46,18 @@ public class UserRepositoryTests {
 
     @Test
     public void testGetUserById() {
-        User userNam = repo.findById(1).get();
-        System.out.println(userNam);
-        assertThat(userNam).isNotNull();
+        User userDuncanKaligs = repo.findById(1).get();
+        System.out.println(userDuncanKaligs);
+        assertThat(userDuncanKaligs).isNotNull();
     }
 
     @Test
     public void testUpdateUserDetails() {
-        User userNam = repo.findById(1).get();
-        userNam.setEnabled(true);
-        userNam.setEmail("dunkygeoffrey@gmail.com");
+        User userDuncanKaligs = repo.findById(1).get();
+        userDuncanKaligs.setEnabled(true);
+        userDuncanKaligs.setEmail("dunkygeoffrey39@gmail.com");
 
-        repo.save(userNam);
+        repo.save(userDuncanKaligs);
     }
 
     @Test
