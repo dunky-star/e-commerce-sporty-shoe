@@ -55,7 +55,7 @@ public class UserRepositoryTests {
     public void testUpdateUserDetails() {
         User userNam = repo.findById(1).get();
         userNam.setEnabled(true);
-        userNam.setEmail("namjavaprogrammer@gmail.com");
+        userNam.setEmail("dunkygeoffrey@gmail.com");
 
         repo.save(userNam);
     }
@@ -69,7 +69,7 @@ public class UserRepositoryTests {
 
     @Test
     public void testGetUserByEmail() {
-        String email = "ravi@gmail.com";
+        String email = "dunky@gmail.com";
         User user = repo.getUserByEmail(email);
 
         assertThat(user).isNotNull();
@@ -114,7 +114,7 @@ public class UserRepositoryTests {
 
     @Test
     public void testSearchUsers() {
-        String keyword = "bruce";
+        String keyword = "Duncan";
 
         int pageNumber = 0;
         int pageSize = 4;
