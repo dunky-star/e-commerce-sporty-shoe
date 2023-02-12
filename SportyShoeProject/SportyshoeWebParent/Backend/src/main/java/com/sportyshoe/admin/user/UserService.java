@@ -54,4 +54,23 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
     }
+
+    // Checking if User email already exist in the database.
+    public boolean isEmailUnique(Integer id, String email) {
+        User userByEmail = userRepo.getUserByEmail(email);
+
+        if (userByEmail == null) return true;
+
+        boolean isCreatingNew = (id == null);
+
+        if (isCreatingNew) {
+            if (userByEmail != null) return false;
+        } else {
+            if (userByEmail.getId() != id) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

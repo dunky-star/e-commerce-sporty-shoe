@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -37,10 +38,18 @@ public class UserController {
     }
 
     @PostMapping("/users/save")
-    public String saveUser(User user){
+    public String saveUser(User user,  RedirectAttributes redirectAttributes){
         System.out.println(user);
         service.save(user);
-        return "redirect/users/users";
+
+        redirectAttributes.addFlashAttribute("message", "The user has been saved successfully.");
+
+        return getRedirectURLtoAffectedUser(user);
+    }
+
+    private String getRedirectURLtoAffectedUser(User user) {
+        String firstPartOfEmail = user.getEmail().split("@")[0];
+        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail;
     }
 
 }
