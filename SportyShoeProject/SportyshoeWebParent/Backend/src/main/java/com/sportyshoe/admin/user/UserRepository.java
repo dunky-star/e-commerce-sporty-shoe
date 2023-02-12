@@ -1,6 +1,7 @@
 package com.sportyshoe.admin.user;
 
 
+import com.sportyshoe.admin.paging.SearchRepository;
 import com.sportyshoe.common.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
