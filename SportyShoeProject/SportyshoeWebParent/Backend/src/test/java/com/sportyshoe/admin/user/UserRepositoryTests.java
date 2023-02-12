@@ -39,6 +39,20 @@ public class UserRepositoryTests {
     }
 
     @Test
+    public void testCreateNewUserWithTwoRoles() {
+        User userSheena = new User("sheena@gmail.com", "Shenna123", "A", "Sheena");
+        Role roleEditor = new Role(4);
+        Role roleAssistant = new Role(6);
+
+        userSheena.addRole(roleEditor);
+        userSheena.addRole(roleAssistant);
+
+        User savedUser = repo.save(userSheena);
+
+        assertThat(savedUser.getId()).isGreaterThan(0);
+    }
+
+    @Test
     public void testListAllUsers() {
         Iterable<User> listUsers = repo.findAll();
         listUsers.forEach(user -> System.out.println(user));
