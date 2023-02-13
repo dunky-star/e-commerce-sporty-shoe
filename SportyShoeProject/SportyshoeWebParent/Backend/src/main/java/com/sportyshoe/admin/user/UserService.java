@@ -61,6 +61,26 @@ public class UserService {
         return userRepo.save(user);
     }
 
+    // Update user service.
+    public User updateAccount(User userInForm) {
+        User userInDB = userRepo.findById(userInForm.getId()).get();
+
+        if (!userInForm.getPassword().isEmpty()) {
+            userInDB.setPassword(userInForm.getPassword());
+            encodePassword(userInDB);
+        }
+
+        if (userInForm.getPhotos() != null) {
+            userInDB.setPhotos(userInForm.getPhotos());
+        }
+
+        userInDB.setFirstName(userInForm.getFirstName());
+        userInDB.setLastName(userInForm.getLastName());
+
+        return userRepo.save(userInDB);
+    }
+    
+    // Encode user password
     private void encodePassword(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -85,7 +105,7 @@ public class UserService {
         return true;
     }
 
-    // For update functionality of users
+    // For getting user id to be updated.
     public User get(Integer id) throws UserNotFoundException {
         try {
             return userRepo.findById(id).get();
@@ -94,6 +114,7 @@ public class UserService {
         }
     }
 
+    // Delete user service.
     public void delete(Integer id) throws UserNotFoundException {
         Long countById = userRepo.countById(id);
         if (countById == null || countById == 0) {
