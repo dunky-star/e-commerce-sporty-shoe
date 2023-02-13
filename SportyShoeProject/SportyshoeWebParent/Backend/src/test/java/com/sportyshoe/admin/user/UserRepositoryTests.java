@@ -139,7 +139,7 @@ public class UserRepositoryTests {
 
     @Test
     public void testSearchUsers() {
-        String keyword = "Duncan";
+        String keyword = "Dun";
 
         int pageNumber = 0;
         int pageSize = 4;
