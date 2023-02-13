@@ -1,13 +1,16 @@
 package com.sportyshoe.admin.user;
 
+import com.sportyshoe.admin.paging.PagingAndSortingHelper;
 import com.sportyshoe.common.entity.Role;
 import com.sportyshoe.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -23,11 +26,19 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<User> listAll(){
-        return (List<User>) userRepo.findAll();
+    public User getByEmail(String email) {
+        return userRepo.getUserByEmail(email);
     }
 
-    public List<Role> listRoles(){
+    public List<User> listAll() {
+        return (List<User>) userRepo.findAll(Sort.by("firstName").ascending());
+    }
+
+    public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+        helper.listEntities(pageNum, USERS_PER_PAGE, userRepo);
+    }
+    
+    public List<Role> listRoles() {
         return (List<Role>) roleRepo.findAll();
     }
 
@@ -73,4 +84,28 @@ public class UserService {
 
         return true;
     }
+
+    // For update functionality of users
+    public User get(Integer id) throws UserNotFoundException {
+        try {
+            return userRepo.findById(id).get();
+        } catch (NoSuchElementException ex) {
+            throw new UserNotFoundException("Could not find any user with ID " + id);
+        }
+    }
+
+    public void delete(Integer id) throws UserNotFoundException {
+        Long countById = userRepo.countById(id);
+        if (countById == null || countById == 0) {
+            throw new UserNotFoundException("Could not find any user with ID " + id);
+        }
+
+        userRepo.deleteById(id);
+    }
+
+    public void updateUserEnabledStatus(Integer id, boolean enabled) {
+        userRepo.updateEnabledStatus(id, enabled);
+    }
+
+
 }
