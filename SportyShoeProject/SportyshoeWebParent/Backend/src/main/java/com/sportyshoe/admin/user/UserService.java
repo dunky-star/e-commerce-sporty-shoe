@@ -79,7 +79,7 @@ public class UserService {
 
         return userRepo.save(userInDB);
     }
-    
+
     // Encode user password
     private void encodePassword(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
