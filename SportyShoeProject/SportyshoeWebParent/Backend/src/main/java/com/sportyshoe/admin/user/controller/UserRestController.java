@@ -15,3 +15,4 @@ public class UserRestController {
         return service.isEmailUnique(id, email) ? "OK" : "Duplicated";
     }
 }
+

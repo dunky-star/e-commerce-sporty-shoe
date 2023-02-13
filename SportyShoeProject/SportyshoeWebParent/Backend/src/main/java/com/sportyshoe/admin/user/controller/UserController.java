@@ -36,6 +36,7 @@ public class UserController {
         return "users/users";
     }
 
+    // Create new user functionality
     @GetMapping("/users/new")
     public String newUser(Model model) {
         List<Role> listRoles = service.listRoles();
@@ -47,6 +48,8 @@ public class UserController {
         model.addAttribute("pageTitle", "Create New User");
         return "users/user_form";
     }
+
+    // Save user functionality
 
     @PostMapping("/users/save")
     public String saveUser(User user,  RedirectAttributes redirectAttributes){
@@ -82,5 +85,6 @@ public class UserController {
             return defaultRedirectURL;
         }
     }
+
 
 }
