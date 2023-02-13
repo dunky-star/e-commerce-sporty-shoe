@@ -36,7 +36,6 @@ public class UserController {
         return "users/users";
     }
 
-    // Create new user functionality
     @GetMapping("/users/new")
     public String newUser(Model model) {
         List<Role> listRoles = service.listRoles();
@@ -50,7 +49,6 @@ public class UserController {
     }
 
     // Save user functionality
-
     @PostMapping("/users/save")
     public String saveUser(User user,  RedirectAttributes redirectAttributes){
         System.out.println(user);
@@ -66,7 +64,7 @@ public class UserController {
         return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail;
     }
 
-    // User update function
+    // User update functionality
     @GetMapping("/users/edit/{id}")
     public String editUser(@PathVariable(name = "id") Integer id,
                            Model model,
@@ -84,6 +82,23 @@ public class UserController {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());
             return defaultRedirectURL;
         }
+    }
+
+    // User delete functionality
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable(name = "id") Integer id,
+                             Model model,
+                             RedirectAttributes redirectAttributes) {
+        try {
+            service.delete(id);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "The user ID " + id + " has been deleted successfully");
+        } catch (UserNotFoundException ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+        }
+
+        return defaultRedirectURL;
     }
 
 
