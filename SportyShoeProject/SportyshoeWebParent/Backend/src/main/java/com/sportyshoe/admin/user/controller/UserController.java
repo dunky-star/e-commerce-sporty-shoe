@@ -1,5 +1,6 @@
 package com.sportyshoe.admin.user.controller;
 
+import com.sportyshoe.admin.FileUploadUtil;
 import com.sportyshoe.admin.paging.PagingAndSortingHelper;
 import com.sportyshoe.admin.paging.PagingAndSortingParam;
 import com.sportyshoe.admin.user.UserNotFoundException;
@@ -62,7 +63,9 @@ public class UserController {
             user.setPhotos(fileName);
             User savedUser = service.save(user);
 
-            String uploadDir = "user-photos/" + savedUser.getId();
+            String uploadDir = "/user-photos/" + savedUser.getId();
+
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         } else {
             if (user.getPhotos().isEmpty()) user.setPhotos(null);
