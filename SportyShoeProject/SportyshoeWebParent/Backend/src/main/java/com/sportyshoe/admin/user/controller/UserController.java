@@ -63,7 +63,7 @@ public class UserController {
             user.setPhotos(fileName);
             User savedUser = service.save(user);
 
-            String uploadDir = "/user-photos/" + savedUser.getId();
+            String uploadDir = "user-photos/" + savedUser.getId();
             FileUploadUtil.removeDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
@@ -109,7 +109,7 @@ public class UserController {
                              RedirectAttributes redirectAttributes) {
         try {
             service.delete(id);
-            String userPhotosDir = "/user-photos/" + id;
+            String userPhotosDir = "user-photos/" + id;
             FileUploadUtil.removeDir(userPhotosDir);
             redirectAttributes.addFlashAttribute("message",
                     "The user ID " + id + " has been deleted successfully");
