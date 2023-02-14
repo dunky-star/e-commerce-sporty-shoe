@@ -7,11 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+public class User extends IdBasedEntity  {
 
     @Column(length = 128, nullable = false, unique = true)
     private String email;
