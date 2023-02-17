@@ -70,6 +70,6 @@ public class Brand extends IdBasedEntity {
         if (this.id == null) return "/images/image-thumbnail.png";
 
         return "/brand-logos/" + this.id + "/" + this.logo;
-        
+
     }
 }
