@@ -30,20 +30,20 @@ public class ProductRepositoryTests {
 
     @Test
     public void testCreateProduct() {
-        Brand brand = entityManager.find(Brand.class, 6);
-        Category category = entityManager.find(Category.class, 9);
+        Brand brand = entityManager.find(Brand.class, 3);
+        Category category = entityManager.find(Category.class, 7);
 
         Product product = new Product();
-        product.setName("Jordan sneaker");
-        product.setAlias("jordan_sneaker_nba");
-        product.setShortDescription("Jordan sneaker sport wear for NBA players.");
-        product.setFullDescription("Jordan sneaker sport wear for NBA players, the best shoe for basket ball game.");
+        product.setName("Adidas sport");
+        product.setAlias("adidas_sneaker_football");
+        product.setShortDescription("Adidas sport wear for football players.");
+        product.setFullDescription("Adidas sport boot for football players, the best shoe for football game.");
 
         product.setBrand(brand);
         product.setCategory(category);
 
-        product.setPrice(5000);
-        product.setCost(4500);
+        product.setPrice(2000);
+        product.setCost(1500);
         product.setEnabled(true);
         product.setInStock(true);
 
