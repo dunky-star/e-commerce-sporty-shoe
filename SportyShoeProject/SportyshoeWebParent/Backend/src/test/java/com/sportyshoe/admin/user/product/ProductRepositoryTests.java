@@ -65,7 +65,7 @@ public class ProductRepositoryTests {
 
     @Test
     public void testGetProduct() {
-        Integer id = 1;
+        Integer id = 2;
         Product product = repo.findById(id).get();
         System.out.println(product);
 
