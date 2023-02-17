@@ -24,9 +24,9 @@ public class BrandRepositoryTests {
 
     @Test
     public void testCreateBrand1() {
-        Category boots = new Category(6);
+        Category Boots = new Category(7);
         Brand bata = new Brand("Bata");
-        bata.getCategories().add(boots);
+        bata.getCategories().add(Boots);
 
         Brand savedBrand = repo.save(bata);
 
@@ -36,14 +36,14 @@ public class BrandRepositoryTests {
 
     @Test
     public void testCreateBrand2() {
-        Category cellphones = new Category(4);
-        Category tablets = new Category(7);
+        Category closedShoes = new Category(1);
+        Category safariJungle = new Category(7);
 
-        Brand apple = new Brand("Apple");
-        apple.getCategories().add(cellphones);
-        apple.getCategories().add(tablets);
+        Brand uniliver = new Brand("Uniliver");
+        uniliver.getCategories().add(closedShoes);
+        uniliver.getCategories().add(safariJungle);
 
-        Brand savedBrand = repo.save(apple);
+        Brand savedBrand = repo.save(uniliver);
 
         assertThat(savedBrand).isNotNull();
         assertThat(savedBrand.getId()).isGreaterThan(0);
@@ -51,12 +51,12 @@ public class BrandRepositoryTests {
 
     @Test
     public void testCreateBrand3() {
-        Brand samsung = new Brand("Samsung");
+        Brand roseFoam = new Brand("Rosefoam");
 
-        samsung.getCategories().add(new Category(29));	// category memory
-        samsung.getCategories().add(new Category(24));	// category internal hard drive
+        roseFoam.getCategories().add(new Category(2));	// category memory
+        roseFoam.getCategories().add(new Category(3));	// category internal hard drive
 
-        Brand savedBrand = repo.save(samsung);
+        Brand savedBrand = repo.save(roseFoam);
 
         assertThat(savedBrand).isNotNull();
         assertThat(savedBrand.getId()).isGreaterThan(0);
@@ -72,18 +72,18 @@ public class BrandRepositoryTests {
 
     @Test
     public void testGetById() {
-        Brand brand = repo.findById(1).get();
+        Brand brand = repo.findById(3).get();
 
-        assertThat(brand.getName()).isEqualTo("Acer");
+        assertThat(brand.getName()).isEqualTo("Bata");
     }
 
     @Test
     public void testUpdateName() {
-        String newName = "Samsung Electronics";
-        Brand samsung = repo.findById(3).get();
-        samsung.setName(newName);
+        String newName = "Adidas";
+        Brand adidas = repo.findById(3).get();
+        adidas.setName(newName);
 
-        Brand savedBrand = repo.save(samsung);
+        Brand savedBrand = repo.save(adidas);
         assertThat(savedBrand.getName()).isEqualTo(newName);
     }
 
