@@ -77,13 +77,13 @@ public class ProductRepositoryTests {
     public void testUpdateProduct() {
         Integer id = 1;
         Product product = repo.findById(id).get();
-        product.setPrice(499);
+        product.setPrice(6000);
 
         repo.save(product);
 
         Product updatedProduct = entityManager.find(Product.class, id);
 
-        assertThat(updatedProduct.getPrice()).isEqualTo(499);
+        assertThat(updatedProduct.getPrice()).isEqualTo(6000);
     }
 
     @Test
