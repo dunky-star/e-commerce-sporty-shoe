@@ -23,8 +23,7 @@ public class ProductImage extends IdBasedEntity {
         this.name = name;
         this.product = product;
     }
-
-
+    
     public ProductImage(String name, Product product) {
         this.name = name;
         this.product = product;
