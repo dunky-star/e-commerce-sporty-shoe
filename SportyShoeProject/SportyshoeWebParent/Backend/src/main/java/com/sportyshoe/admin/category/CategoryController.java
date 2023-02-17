@@ -82,8 +82,8 @@ public class CategoryController {
             category.setImage(fileName);
 
             Category savedCategory = service.save(category);
-            String uploadDir = "category-images/" + savedCategory.getId();
-            FileUploadUtil.removeDir(uploadDir);
+            String uploadDir = "../category-images/" + savedCategory.getId();
+            FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         } else {
@@ -129,7 +129,7 @@ public class CategoryController {
                                  RedirectAttributes redirectAttributes) {
         try {
             service.delete(id);
-            String categoryDir = "category-images/" + id;
+            String categoryDir = "../category-images/" + id;
             FileUploadUtil.removeDir(categoryDir);
 
             redirectAttributes.addFlashAttribute("message",
