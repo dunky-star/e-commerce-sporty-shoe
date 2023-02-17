@@ -68,6 +68,7 @@ public class ProductRepositoryTests {
         Integer id = 2;
         Product product = repo.findById(id).get();
         System.out.println(product);
+        
 
         assertThat(product).isNotNull();
     }
