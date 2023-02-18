@@ -72,7 +72,7 @@ public class ProductService {
 
         Product updatedProduct = repo.save(product);
        // repo.updateReviewCountAndAverageRating(updatedProduct.getId());
-
+        updatedProduct.getId();
         return updatedProduct;
     }
 
