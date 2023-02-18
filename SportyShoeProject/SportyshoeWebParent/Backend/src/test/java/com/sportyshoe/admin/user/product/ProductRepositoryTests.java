@@ -116,9 +116,9 @@ public class ProductRepositoryTests {
         Integer productId = 1;
         Product product = repo.findById(productId).get();
 
-        product.addDetail("Device Memory", "128 GB");
-        product.addDetail("CPU Model", "MediaTek");
-        product.addDetail("OS", "Android 10");
+        product.addDetail("Yeeezy", "128");
+        product.addDetail("Denim sneaker", "Best sneaker");
+        product.addDetail("Rebooky", "Test test");
 
         Product savedProduct = repo.save(product);
         assertThat(savedProduct.getDetails()).isNotEmpty();
