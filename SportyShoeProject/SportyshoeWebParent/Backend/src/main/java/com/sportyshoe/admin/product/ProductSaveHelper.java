@@ -15,14 +15,14 @@ public class ProductSaveHelper {
 
     static void deleteExtraImagesWeredRemovedOnForm(Product product) {
         String extraImageDir = "../product-images/" + product.getId() + "/extras";
-        List<String> listObjectKeys = FileUploadUtil.(extraImageDir);
+        List<String> listObjectKeys = FileUploadUtil.saveFile(extraImageDir);
 
         for (String objectKey : listObjectKeys) {
             int lastIndexOfSlash = objectKey.lastIndexOf("/");
             String fileName = objectKey.substring(lastIndexOfSlash + 1, objectKey.length());
 
             if (!product.containsImageName(fileName)) {
-                AmazonS3Util.deleteFile(objectKey);
+                FileUploadUtil.removeDir(objectKey);
                 System.out.println("Deleted extra image: " + objectKey);
             }
         }
