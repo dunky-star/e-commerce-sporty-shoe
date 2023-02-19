@@ -1,7 +1,6 @@
-package com.sportyshoe.test.category;
+package com.sportyshoe.site.category;
 
 import com.sportyshoe.common.entity.Category;
-import com.sportyshoe.site.category.CategoryRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
